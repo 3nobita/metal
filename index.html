@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metal Weight Calculator | Innovative Tools</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+<link rel="manifest" href="./manifest.webmanifest">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="page">
+<header class="site-header">
+  <p class="company-name">Innovative Tools</p>
+  <h1>Metal Weight Calculator</h1>
+  <!-- <p>Select a profile to calculate weight, dimensions or material cost.</p> -->
+</header>
+<section aria-labelledby="profiles-title">
+  <h2 id="profiles-title">Choose a metal profile</h2>
+  <div id="profile-gallery" class="profile-gallery"></div>
+</section>
+
+<dialog id="profile-calculator" aria-labelledby="calculator-title">
+  <div class="dialog-header">
+    <h2 id="calculator-title">Metal calculator</h2>
+    <button type="button" id="close-calculator" autofocus>Close</button>
+  </div>
+    <div class="layout">
+      <section class="card" aria-labelledby="setup-title">
+        <h2 id="setup-title">Calculation setup</h2>
+
+        <div class="modes" role="group" aria-label="Calculation mode">
+          <button type="button" data-mode="weight" aria-pressed="true">Weight</button>
+          <button type="button" data-mode="length" aria-pressed="false">Length</button>
+          <button type="button" data-mode="diameter" aria-pressed="false">Diameter</button>
+          <button type="button" data-mode="pieces" aria-pressed="false">Pieces</button>
+        </div>
+
+        <form id="calculator" novalidate>
+          <div class="fields">
+            <label>
+              Profile
+              <select id="profile" aria-describedby="profile-hint"></select>
+            </label>
+
+            <label>
+              Material
+              <select id="material"></select>
+            </label>
+
+            <label>
+              Density (kg/m³)
+              <input id="density" type="number" inputmode="decimal" step="any" required>
+            </label>
+
+            <label>
+              Price per kg (₹)
+              <input id="price" type="number" inputmode="decimal" step="any"
+                     min="0" placeholder="Optional">
+            </label>
+          </div>
+
+          <p class="hint" id="profile-hint"></p>
+
+          <fieldset>
+            <legend>Dimensions and quantity</legend>
+            <div class="fields" id="dimensions"></div>
+          </fieldset>
+
+          <p class="error" id="error" role="alert" hidden></p>
+
+          <div class="actions">
+            <button class="primary" type="submit">Calculate</button>
+            <button class="secondary" id="reset" type="button">Reset</button>
+          </div>
+        </form>
+
+        <noscript>
+          <p class="error">Enable JavaScript to use the calculator.</p>
+        </noscript>
+      </section>
+
+      <section class="card results" id="results" aria-labelledby="results-title">
+        <h2 id="results-title" tabindex="-1">Results</h2>
+        <p id="result-profile" class="result-profile"></p>
+
+        <div class="result-main" aria-live="polite" aria-atomic="true">
+          <p id="result-label">Total weight</p>
+          <output id="result-value">—</output>
+        </div>
+
+        <dl class="metrics" id="metrics"></dl>
+
+        <p class="hint">
+          Estimates use nominal dimensions and density. For rolled sections
+          with rounded corners, use the supplier’s cross-sectional area.
+        </p>
+      </section>
+    </div>
+  </main>
+</dialog>  
+
+</body>
+</html>
